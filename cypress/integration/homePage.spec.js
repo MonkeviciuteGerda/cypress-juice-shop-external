@@ -20,4 +20,28 @@ describe('Home Page tests', () => {
         cy.get('[data-cy="account-button"]').click();
         cy.get('[data-cy="user-email"] span').should('contain.text', 'jane.doe@test.com');
     });
+
+    it('should be able to login without UI', () => {
+        const body = {
+            email: 'jane.doe@test.com',
+            password: 'jane.doe',
+        };
+
+        cy.request({
+            method: 'POST',
+            url: '/rest/user/login',
+            body,
+        }).then((response) => {
+            const token = response.body.authentication.token;
+            cy.setCookie('token', token);
+            window.localStorage.setItem('token', token);
+        });
+
+        cy.visit('/#');
+        cy.get('[aria-label="Close Welcome Banner"]').click();
+        cy.get('[aria-label="dismiss cookie message"]').click();
+
+        cy.get('[data-cy="account-button"]').click();
+        cy.get('[data-cy="user-email"] span').should('contain.text', 'jane.doe@test.com');
+    });
 });
