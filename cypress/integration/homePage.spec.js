@@ -44,4 +44,12 @@ describe('Home Page tests', () => {
         cy.get('[data-cy="account-button"]').click();
         cy.get('[data-cy="user-email"] span').should('contain.text', 'jane.doe@test.com');
     });
+
+    it('should be able to login without UI with custom command', () => {
+        cy.login('jane.doe@test.com', 'jane.doe');
+        cy.visit('/#');
+
+        cy.get('[data-cy="account-button"]').click();
+        cy.get('[data-cy="user-email"] span').should('contain.text', 'jane.doe@test.com');
+    });
 });
