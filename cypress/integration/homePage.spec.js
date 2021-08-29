@@ -1,4 +1,7 @@
 import HomePage from '../page-objects/homePage/homePage';
+import UseFixture from '../utils/useFixture.utils';
+
+const useFixture = new UseFixture();
 
 describe('Home Page tests', () => {
     it('should be able to visit home page', () => {
@@ -63,7 +66,7 @@ describe('Home Page tests', () => {
     });
 
     it('should be able to see sold out item', () => {
-        cy.intercept('/api/Quantitys/', { fixture: 'soldOutItem' }).as('soldOut');
+        useFixture.soldOutItem();
         HomePage.openHomePage();
         cy.wait('@soldOut');
         HomePage.closeBanners();
