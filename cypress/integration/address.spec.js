@@ -10,6 +10,11 @@ describe('Address Page tests', () => {
         cy.visit('/#/address/saved');
     });
 
+    beforeEach(() => {
+        cy.restoreLocalStorage();
+        Cypress.Cookies.preserveOnce('token', 'cookieconsent_status', 'welcomebanner_status');
+    });
+
     it('should be able to create new address', () => {
         cy.get('[data-cy="add-new-address-button"]').click();
 
@@ -33,7 +38,7 @@ describe('Address Page tests', () => {
             });
     });
 
-    it.only('should be able to edit existing address', () => {
+    it('should be able to edit existing address', () => {
         const addressDetails = {
             country: 'Country',
             fullName: addressName,
@@ -81,5 +86,9 @@ describe('Address Page tests', () => {
                 cy.get('[data-cy="edit-button"]').should('be.visible');
                 cy.get('[data-cy="delete-button"]').should('be.visible');
             });
+    });
+
+    afterEach(() => {
+        cy.saveLocalStorage();
     });
 });
