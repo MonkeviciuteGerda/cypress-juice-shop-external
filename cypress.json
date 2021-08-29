@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://juice-shop-external.herokuapp.com",
+    "baseUrl": "http://localhost:3000",
     "viewportWidth": 1920,
     "viewportHeight": 1200
 }
