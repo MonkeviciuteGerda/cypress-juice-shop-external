@@ -12,7 +12,7 @@ export default class ApiRequests {
                 body,
             })
             .then((response) => {
-                return response.body.authentication.token;
+                return response.body.authentication;
             });
     }
 

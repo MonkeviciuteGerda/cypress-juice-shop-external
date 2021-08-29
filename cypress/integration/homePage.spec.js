@@ -73,4 +73,13 @@ describe('Home Page tests', () => {
 
         HomePage.assertNthProductIsSoldOut(1);
     });
+
+    it('should be able to add pruducts to basket if they are in stock', () => {
+        cy.login(Cypress.env('email'), Cypress.env('password'));
+        useFixture.soldOutItem();
+        HomePage.openHomePage();
+        cy.wait('@soldOut');
+
+        HomePage.addProductsToBasketWithRibbonsInStock();
+    });
 });

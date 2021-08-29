@@ -4,10 +4,10 @@ const apiRequests = new ApiRequests();
 
 export default class Cleanup {
     cleanupAddresses(email, password) {
-        apiRequests.getToken(email, password).then((token) => {
-            apiRequests.getAddresses(token).then((addresses) => {
+        apiRequests.getToken(email, password).then((authentication) => {
+            apiRequests.getAddresses(authentication.token).then((addresses) => {
                 addresses.data.forEach((address) => {
-                    apiRequests.deleteAddress(token, address.id);
+                    apiRequests.deleteAddress(authentication.token, address.id);
                 });
             });
         });
