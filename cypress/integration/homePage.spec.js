@@ -1,3 +1,5 @@
+import HomePage from '../page-objects/homePage/homePage';
+
 describe('Home Page tests', () => {
     it('should be able to visit home page', () => {
         cy.visit('/#');
@@ -51,5 +53,12 @@ describe('Home Page tests', () => {
 
         cy.get('[data-cy="account-button"]').click();
         cy.get('[data-cy="user-email"] span').should('contain.text', Cypress.env('email'));
+    });
+
+    it('should be able to display products in home page', () => {
+        HomePage.openHomePage();
+        HomePage.closeBanners();
+
+        HomePage.assertNProductsAreDisplayed(12);
     });
 });
