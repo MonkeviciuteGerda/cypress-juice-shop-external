@@ -1,3 +1,7 @@
+import WaitForRequests from '../../utils/waitForRequests.utils';
+
+const waitForRequests = new WaitForRequests();
+
 class HomePage {
     getCloseWelcomeBannerButton() {
         return cy.get('[aria-label="Close Welcome Banner"]');
@@ -12,8 +16,8 @@ class HomePage {
     }
 
     openHomePage() {
-        cy.intercept('/api/Quantitys/').as('quantities');
-        cy.intercept('/rest/products/search?q=').as('products');
+        waitForRequests.waitForQuantities();
+        waitForRequests.waitForProducts();
         cy.visit('/');
         cy.wait('@quantities');
         cy.wait('@products');
