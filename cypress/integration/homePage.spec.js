@@ -61,4 +61,13 @@ describe('Home Page tests', () => {
 
         HomePage.assertNProductsAreDisplayed(12);
     });
+
+    it('should be able to see sold out item', () => {
+        cy.intercept('/api/Quantitys/', { fixture: 'soldOutItem' }).as('soldOut');
+        HomePage.openHomePage();
+        cy.wait('@soldOut');
+        HomePage.closeBanners();
+
+        HomePage.assertNthProductIsSoldOut(1);
+    });
 });

@@ -15,6 +15,10 @@ class HomePage {
         return cy.get('[data-cy="item-card"]');
     }
 
+    getSoldOutRibbon() {
+        return cy.get('[data-cy="sold-out-ribbon"]');
+    }
+
     openHomePage() {
         waitForRequests.waitForQuantities();
         waitForRequests.waitForProducts();
@@ -31,6 +35,14 @@ class HomePage {
     assertNProductsAreDisplayed(n) {
         this.getProductCard().should('have.length', n);
         this.getProductCard().first().should('be.visible');
+    }
+
+    assertNthProductIsSoldOut(nth) {
+        this.getProductCard()
+            .eq(nth)
+            .within(() => {
+                this.getSoldOutRibbon().should('be.visible');
+            });
     }
 }
 
