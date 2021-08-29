@@ -19,6 +19,14 @@ class HomePage {
         return cy.get('[data-cy="sold-out-ribbon"]');
     }
 
+    getProductWithRibbon() {
+        return cy.get('[data-cy="item-card"] .ribbon');
+    }
+
+    getAddToBasketButton() {
+        return cy.get('[data-cy="add-to-basket-button"]');
+    }
+
     openHomePage() {
         waitForRequests.waitForQuantities();
         waitForRequests.waitForProducts();
@@ -43,6 +51,19 @@ class HomePage {
             .within(() => {
                 this.getSoldOutRibbon().should('be.visible');
             });
+    }
+
+    addProductsToBasketWithRibbonsInStock() {
+        this.getProductWithRibbon().each(($li, index) => {
+            if ($li.text() !== 'Sold Out') {
+                this.getProductWithRibbon()
+                    .eq(index)
+                    .parent()
+                    .within(() => {
+                        this.getAddToBasketButton().click();
+                    });
+            }
+        });
     }
 }
 
