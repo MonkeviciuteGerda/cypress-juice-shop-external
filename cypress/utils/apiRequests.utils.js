@@ -37,4 +37,15 @@ export default class ApiRequests {
             return response.body;
         });
     }
+
+    createAddress(details) {
+        const token = window.localStorage.getItem('token');
+
+        cy.request({
+            method: 'POST',
+            url: '/api/Addresss/',
+            body: details,
+            headers: { Authorization: `Bearer ${token}` },
+        });
+    }
 }
