@@ -1,4 +1,6 @@
 import './commands';
+import 'cypress-mochawesome-reporter/register';
+
 import Cleanup from '../utils/cleanup.utils';
 
 const cleanup = new Cleanup();

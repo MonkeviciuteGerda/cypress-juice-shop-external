@@ -81,6 +81,6 @@ describe('Home Page tests', () => {
         cy.wait('@soldOut');
 
         HomePage.addProductsToBasketWithRibbonsInStock();
-        cy.screenshot();
+        HomePage.assertTotalBasketItemsCount(3);
     });
 });

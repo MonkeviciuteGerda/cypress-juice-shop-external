@@ -27,6 +27,10 @@ class HomePage {
         return cy.get('[data-cy="add-to-basket-button"]');
     }
 
+    getTotalBasketItemsCount() {
+        return cy.get('[data-cy="item-total"]');
+    }
+
     openHomePage() {
         waitForRequests.waitForQuantities();
         waitForRequests.waitForProducts();
@@ -64,6 +68,10 @@ class HomePage {
                     });
             }
         });
+    }
+
+    assertTotalBasketItemsCount(count) {
+        this.getTotalBasketItemsCount().should('have.text', count);
     }
 }
 
