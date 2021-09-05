@@ -5,13 +5,17 @@
     "main": "index.js",
     "scripts": {
         "cypress:open": "cypress open",
-        "cypress:run": "cypress run"
+        "cypress:run": "cypress run",
+        "cypress:smoke": "CYPRESS_INCLUDE_TAGS=smoke npm run cypress:run",
+        "cypress:regression": "CYPRESS_INCLUDE_TAGS=regression npm run cypress:run"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "cypress": "^8.3.1",
-        "cypress-mochawesome-reporter": "^2.2.1"
+        "cypress-mochawesome-reporter": "^2.2.1",
+        "cypress-tags": "^0.2.0",
+        "typescript": "^4.4.2"
     }
 }

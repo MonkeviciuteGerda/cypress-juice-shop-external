@@ -1,3 +1,5 @@
+/// <reference types='cypress-tags' />
+
 import './commands';
 import 'cypress-mochawesome-reporter/register';
 

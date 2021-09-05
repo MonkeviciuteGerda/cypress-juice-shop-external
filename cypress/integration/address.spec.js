@@ -44,7 +44,7 @@ describe('Address Page tests', () => {
         Cypress.Cookies.preserveOnce('token', 'cookieconsent_status', 'welcomebanner_status');
     });
 
-    it('should be able to create new address', () => {
+    it(['smoke', 'regression'], 'should be able to create new address', () => {
         AddressPage.openNewAddressForm();
         AddressPage.addressForm.fillInAddress(addressDetails);
         AddressPage.addressForm.submitAddressForm();
@@ -52,7 +52,7 @@ describe('Address Page tests', () => {
         AddressPage.assertAddressTableLastRow(expectedNewAddressDetailsInTable);
     });
 
-    it('should be able to edit existing address', () => {
+    it(['smoke', 'regression'], 'should be able to edit existing address', () => {
         apiRequests.createAddress(addressDetails);
 
         cy.reload();
