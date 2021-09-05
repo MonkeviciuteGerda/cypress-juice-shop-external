@@ -4,13 +4,13 @@ import UseFixture from '../utils/useFixture.utils';
 const useFixture = new UseFixture();
 
 describe('Home Page tests', () => {
-    it('should be able to visit home page', () => {
+    it(['regression'], 'should be able to visit home page', () => {
         cy.visit('/#');
         cy.url().should('include', '/#');
         cy.contains('OWASP Juice Shop');
     });
 
-    it('should be able to visit home page as logged in user', () => {
+    it(['smoke', 'regression'], 'should be able to visit home page as logged in user', () => {
         cy.visit('/#');
         cy.get('[aria-label="Close Welcome Banner"]').click();
         cy.get('[aria-label="dismiss cookie message"]').click();
@@ -26,7 +26,7 @@ describe('Home Page tests', () => {
         cy.get('[data-cy="user-email"] span').should('contain.text', Cypress.env('email'));
     });
 
-    it('should be able to login without UI', () => {
+    it(['regression'], 'should be able to login without UI', () => {
         const body = {
             email: Cypress.env('email'),
             password: Cypress.env('password'),
