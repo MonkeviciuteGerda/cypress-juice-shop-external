@@ -1,3 +1,4 @@
+import 'cypress-file-upload';
 import ApiRequests from '../utils/apiRequests.utils';
 
 const apiRequests = new ApiRequests();
