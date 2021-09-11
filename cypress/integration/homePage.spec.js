@@ -74,7 +74,7 @@ describe('Home Page tests', () => {
         HomePage.assertNthProductIsSoldOut(1);
     });
 
-    it('should be able to add pruducts to basket if they are in stock', () => {
+    it('should be able to add pruducts to basket if they are in stock', { retries: 2 }, () => {
         cy.login(Cypress.env('email'), Cypress.env('password'));
         useFixture.soldOutItem();
         HomePage.openHomePage();
