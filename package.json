@@ -4,7 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "cypress:open": "cypress open"
+        "cypress:open": "cypress open",
+        "cypress:qa": "npx cypress open --env configFile=qa",
+        "cypress:local": "npx cypress open --env configFile=local"
     },
     "keywords": [],
     "author": "",
